@@ -9,3 +9,6 @@ The SpaceshipDisplay program lets you scroll through a list of destinations in t
 ### Enhancement ideas
 1. Add a speaker to beep an indication of the countdown
 2. Add some LEDs for the countdown
+
+## ArcReactor
+The ArcReactor program is used to power a NeoPixel ring with a GEMMA microcontroller. Build instructions can be found on the [Adafruit website](https://learn.adafruit.com/superhero-power-plant/overview).
