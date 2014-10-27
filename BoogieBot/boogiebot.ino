@@ -10,6 +10,7 @@
 //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 #define NUM_PIXELS 48
+#define PIXELS_IN_ROW 24
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_PIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 const uint32_t DIM = 15;
@@ -40,16 +41,64 @@ void loop() {
   theaterChaseRainbow(100);
 
   delay(500);
+
+  clearAll();
+
+  wiggle(BLUE_COLOR, 100);
+
+  for (int ii = 0; ii < 10; ii++) {
+    fillLeftToRight(0, BLUE_COLOR, 20);
+    fillLeftToRight(1, BLUE_COLOR, 20);
+  }
+}
+
+void wiggle(uint32_t c, int delayMs) {
+  clearAll();
+  int count = 0, index = 0;
+
+  while (count < NUM_PIXELS / 2) {
+    strip.setPixelColor(index, c);
+    strip.show();
+
+    strip.setPixelColor(index, BLANK_COLOR);
+
+    if (count % 2 == 0) {
+      index = index + PIXELS_IN_ROW + 1;
+    } else {
+      index = index - PIXELS_IN_ROW + 1;
+    }
+
+    delay(delayMs);
+
+    count++;
+  }
 }
 
 /**
  * Fill the line of LEDs from left to right with the given color
  */
-void fillLeftToRight(uint32_t c, int delayMs) {
-  for (int ii = 0; ii < NUM_PIXELS; ii++) {
+void fillLeftToRight(int row, uint32_t c, int delayMs) {
+  // Calculate the LED to start with based on the row
+  int first = (row * PIXELS_IN_ROW);
+  int last = (row * PIXELS_IN_ROW) + PIXELS_IN_ROW;
+
+  clearRow(row);
+
+  for (int ii = first; ii < last; ii++) {
     strip.setPixelColor(ii, c);
     strip.show();
     delay(delayMs);
+  }
+}
+
+void clearRow(int row) {
+  // Calculate the LED to start with based on the row
+  int first = (row * PIXELS_IN_ROW);
+  int last = (row * PIXELS_IN_ROW) + PIXELS_IN_ROW;
+
+  for (int ii = first; ii < last; ii++) {
+    strip.setPixelColor(ii, BLANK_COLOR);
+    strip.show();
   }
 }
 
