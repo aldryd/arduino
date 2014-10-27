@@ -12,3 +12,6 @@ The SpaceshipDisplay program lets you scroll through a list of destinations in t
 
 ## ArcReactor
 The ArcReactor program is used to power a NeoPixel ring with a GEMMA microcontroller. Build instructions can be found on the [Adafruit website](https://learn.adafruit.com/superhero-power-plant/overview).
+
+## BoogieBot
+Using 6 NeoPixel strips (8 LEDs each), this is setup to cycle through some cool patterns for a Halloween costume known as the BoogieBot 4000.
