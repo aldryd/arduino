@@ -15,3 +15,7 @@ The ArcReactor program is used to power a NeoPixel ring with a GEMMA microcontro
 
 ## BoogieBot
 Using 6 NeoPixel strips (8 LEDs each), this is setup to cycle through some cool patterns for a Halloween costume known as the BoogieBot 4000.
+
+## MotionLight
+This Arduino program detects motion from a PIR motion sensor and turns on an analog RGB strip of LEDs to a dim red color. As long as it detects movemenet, the LEDs will stay lit. After a specified length of time, the LEDs will dim and turn off.
+
